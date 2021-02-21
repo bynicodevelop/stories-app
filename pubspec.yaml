@@ -23,9 +23,13 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  
+  flutter_bloc: ^6.1.2
+  equatable: ^1.2.6
 
   services:
-    path: "../services"
+    git:
+      url: git://github.com/bynicodevelop/stories-services.git
   
   animator: ^2.0.2
 
@@ -53,6 +57,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/
+    - assets/images/story/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
