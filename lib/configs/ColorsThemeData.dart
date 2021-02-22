@@ -8,10 +8,22 @@ class ColorsThemeData {
   static ThemeData lightThemeData =
       themeData(lightColorScheme, _lightFocusColor);
 
+  static TextTheme _textTheme = TextTheme(
+    headline1: TextStyle(
+      fontSize: 65.0,
+    ),
+    bodyText1: TextStyle(
+      fontSize: 18.0,
+      fontWeight: FontWeight.normal,
+      height: 1.2,
+      letterSpacing: 1.1,
+    ),
+  );
+
   static ThemeData themeData(ColorScheme colorScheme, Color focusColor) {
     return ThemeData(
       colorScheme: colorScheme,
-      // textTheme: _textTheme,
+      textTheme: _textTheme,
       // Matches manifest.json colors and background color.
       primaryColor: const Color(0xFF030303),
       appBarTheme: AppBarTheme(
@@ -21,20 +33,24 @@ class ColorsThemeData {
         iconTheme: IconThemeData(color: colorScheme.primary),
         brightness: colorScheme.brightness,
       ),
+      buttonTheme: ButtonThemeData(
+        buttonColor: colorScheme.primary,
+        textTheme: ButtonTextTheme.primary,
+      ),
       iconTheme: IconThemeData(color: colorScheme.onPrimary),
       canvasColor: colorScheme.background,
-      scaffoldBackgroundColor: colorScheme.background,
+      scaffoldBackgroundColor: Colors.white,
       highlightColor: Colors.transparent,
       accentColor: colorScheme.primary,
       focusColor: focusColor,
       snackBarTheme: SnackBarThemeData(
-        behavior: SnackBarBehavior.floating,
-        // backgroundColor: Color.alphaBlend(
-        //   _lightFillColor.withOpacity(0.80),
-        //   _darkFillColor,
-        // ),
-        // contentTextStyle: _textTheme.subtitle1.apply(color: _darkFillColor),
-      ),
+          // behavior: SnackBarBehavior.floating,
+          // backgroundColor: Color.alphaBlend(
+          //   _lightFillColor.withOpacity(0.80),
+          //   _darkFillColor,
+          // ),
+          // contentTextStyle: _textTheme.subtitle1.apply(color: _darkFillColor),
+          ),
     );
   }
 

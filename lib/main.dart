@@ -1,10 +1,10 @@
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:app/Home.dart';
 import 'package:app/blocs/bloc.dart';
 import 'package:app/configs/ColorsThemeData.dart';
+import 'package:app/screens/authentication/ReservationScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:services/services.dart';
 
 void main() {
@@ -25,6 +25,9 @@ class App extends StatelessWidget {
         providers: [
           BlocProvider<StorynextBloc>(
             create: (context) => StorynextBloc()..add(StoryNextStarted()),
+          ),
+          BlocProvider<ReservationformBloc>(
+            create: (context) => ReservationformBloc(),
           )
         ],
         child: MaterialApp(
@@ -40,7 +43,7 @@ class App extends StatelessWidget {
           supportedLocales: [
             const Locale('fr', ''),
           ],
-          home: Home(),
+          home: ReservationScreen(),
         ));
   }
 }
