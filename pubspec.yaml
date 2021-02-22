@@ -23,6 +23,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
+  flutter_localizations:
+    sdk: flutter
+
+  intl: ^0.16.1
   
   flutter_bloc: ^6.1.2
   equatable: ^1.2.6
@@ -54,6 +59,7 @@ flutter_icons:
 
 # The following section is specific to Flutter.
 flutter:
+  generate: true
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

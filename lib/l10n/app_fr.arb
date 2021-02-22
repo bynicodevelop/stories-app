@@ -1,0 +1,6 @@
+{
+    "followers": "Followers",
+    "@followers": {
+      "description": "Nombre de followers"
+    }
+}

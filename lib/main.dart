@@ -1,3 +1,5 @@
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:app/Home.dart';
 import 'package:app/blocs/bloc.dart';
 import 'package:app/configs/ColorsThemeData.dart';
@@ -29,6 +31,15 @@ class App extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: 'Run new stories...',
           theme: ColorsThemeData.lightThemeData,
+          localizationsDelegates: [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: [
+            const Locale('fr', ''),
+          ],
           home: Home(),
         ));
   }
