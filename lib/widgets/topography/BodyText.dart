@@ -10,9 +10,14 @@ class BodyText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      text,
-      style: Theme.of(context).textTheme.bodyText1,
+    return Padding(
+      padding: const EdgeInsets.only(
+        bottom: 10.0,
+      ),
+      child: Text(
+        text,
+        style: Theme.of(context).textTheme.bodyText1,
+      ),
     );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:app/blocs/bloc.dart';
 import 'package:app/helpers/ReservationMessagingStatus.dart';
 import 'package:app/helpers/Translate.dart';
+import 'package:app/screens/authentication/EndReservationScreen.dart';
 import 'package:app/widgets/forms/MainButton.dart';
 import 'package:app/widgets/forms/PhoneNumberInput.dart';
 import 'package:app/widgets/forms/SlugInput.dart';
@@ -30,7 +31,9 @@ class _ReservationScreenState extends State<ReservationScreen> {
       body: Center(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 20.0,
+            ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
@@ -66,7 +69,13 @@ class _ReservationScreenState extends State<ReservationScreen> {
                             'ReservationBloc state listener: ${state.status}');
 
                         if (state.status == ReservationStatus.complete) {
-                          // Redirection
+                          Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => EndReservationScreen(),
+                            ),
+                            (_) => false,
+                          );
                         }
 
                         reservationMessagingStatus.message(

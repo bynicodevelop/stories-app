@@ -1,5 +1,6 @@
 import 'package:app/blocs/bloc.dart';
 import 'package:app/configs/ColorsThemeData.dart';
+import 'package:app/screens/authentication/EndReservationScreen.dart';
 import 'package:app/screens/authentication/ReservationScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
