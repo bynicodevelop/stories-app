@@ -24,7 +24,7 @@ class ReservationformBloc
       );
     } else if (event is SlugChanged) {
       final slug = Slug.dirty(event.slug);
-
+      print(event);
       yield state.copyWith(
         slug: slug.valid ? slug : Slug.pure(event.slug),
         status: Formz.validate([slug, state.username, state.phoneNumber]),
@@ -50,14 +50,13 @@ class ReservationformBloc
       );
 
       if (state.status.isValidated) {
-        print('isValidated: ${state.status.isValidated}');
         yield state.copyWith(
           status: FormzStatus.submissionInProgress,
         );
-        await Future<void>.delayed(const Duration(seconds: 1));
-        yield state.copyWith(
-          status: FormzStatus.submissionSuccess,
-        );
+        //   await Future<void>.delayed(const Duration(seconds: 1));
+        //   yield state.copyWith(
+        //     status: FormzStatus.submissionSuccess,
+        //   );
       }
     }
   }

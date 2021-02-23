@@ -106,6 +106,27 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.0-nullsafety.1"
+  cloud_firestore:
+    dependency: transitive
+    description:
+      name: cloud_firestore
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.16.0+1"
+  cloud_firestore_platform_interface:
+    dependency: transitive
+    description:
+      name: cloud_firestore_platform_interface
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.2"
+  cloud_firestore_web:
+    dependency: transitive
+    description:
+      name: cloud_firestore_web
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.3.0+2"
   code_builder:
     dependency: transitive
     description:
@@ -409,11 +430,9 @@ packages:
   services:
     dependency: "direct main"
     description:
-      path: "."
-      ref: HEAD
-      resolved-ref: "0b8956466409075df0e2f8b49a9af9ba26da6adf"
-      url: "git://github.com/bynicodevelop/stories-services.git"
-    source: git
+      path: "../packages/services"
+      relative: true
+    source: path
     version: "0.0.1"
   sky_engine:
     dependency: transitive

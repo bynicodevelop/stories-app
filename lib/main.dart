@@ -13,6 +13,7 @@ void main() {
   Bloc.observer = SimpleBlocObserver();
   runApp(
     Services(
+      isDevelopement: true,
       child: App(),
     ),
   );
@@ -22,28 +23,29 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-        providers: [
-          BlocProvider<StorynextBloc>(
-            create: (context) => StorynextBloc()..add(StoryNextStarted()),
-          ),
-          BlocProvider<ReservationformBloc>(
-            create: (context) => ReservationformBloc(),
-          )
+      providers: [
+        BlocProvider<StorynextBloc>(
+          create: (context) => StorynextBloc()..add(StoryNextStarted()),
+        ),
+        BlocProvider<ReservationformBloc>(
+          create: (context) => ReservationformBloc(),
+        ),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Run new stories...',
+        theme: ColorsThemeData.lightThemeData,
+        localizationsDelegates: [
+          AppLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
         ],
-        child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'Run new stories...',
-          theme: ColorsThemeData.lightThemeData,
-          localizationsDelegates: [
-            AppLocalizations.delegate,
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-          ],
-          supportedLocales: [
-            const Locale('fr', ''),
-          ],
-          home: ReservationScreen(),
-        ));
+        supportedLocales: [
+          const Locale('fr', ''),
+        ],
+        home: ReservationScreen(),
+      ),
+    );
   }
 }
