@@ -1,4 +1,5 @@
 import 'package:app/blocs/bloc.dart';
+import 'package:app/helpers/ReservationMessagingStatus.dart';
 import 'package:app/helpers/Translate.dart';
 import 'package:app/widgets/forms/MainButton.dart';
 import 'package:app/widgets/forms/PhoneNumberInput.dart';
@@ -59,42 +60,19 @@ class _ReservationScreenState extends State<ReservationScreen> {
                     ),
                     BlocListener<ReservationBloc, ReservationState>(
                       listener: (context, state) {
+                        ReservationMessagingStatus reservationMessagingStatus =
+                            ReservationMessagingStatus();
                         print(
                             'ReservationBloc state listener: ${state.status}');
 
                         if (state.status == ReservationStatus.complete) {
-                          _scaffoldState.currentState
-                            ..hideCurrentSnackBar()
-                            ..showSnackBar(
-                              SnackBar(
-                                content: Text('Success submit...'),
-                              ),
-                            );
+                          // Redirection
                         }
 
-                        if (state.status ==
-                            ReservationStatus.slugAlreadyExists) {
-                          _scaffoldState.currentState
-                            ..hideCurrentSnackBar()
-                            ..showSnackBar(
-                              SnackBar(
-                                content: Text(
-                                    "L'identifiant que vous avez saisi existe déjà..."),
-                              ),
-                            );
-                        }
-
-                        if (state.status ==
-                            ReservationStatus.phoneAlreadyExists) {
-                          _scaffoldState.currentState
-                            ..hideCurrentSnackBar()
-                            ..showSnackBar(
-                              SnackBar(
-                                content: Text(
-                                    "Une réservation existe déjà avec ce numéro de téléphone"),
-                              ),
-                            );
-                        }
+                        reservationMessagingStatus.message(
+                          _scaffoldState.currentState,
+                          state.status,
+                        );
                       },
                     )
                   ],
