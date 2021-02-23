@@ -7,13 +7,24 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:services/services.dart';
 
+// Permet de définir si on est en dev mode
+// En fonction du fichier launch de VSCode
+bool isDevelopmentMode() {
+  const mode = String.fromEnvironment("MODE");
+
+  return mode == 'development';
+}
+
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
 
   Bloc.observer = SimpleBlocObserver();
+
+  print('isDevelopmentMode: ${isDevelopmentMode()}');
+
   runApp(
     Services(
-      isDevelopement: true,
+      isDevelopement: isDevelopmentMode(),
       child: App(),
     ),
   );
