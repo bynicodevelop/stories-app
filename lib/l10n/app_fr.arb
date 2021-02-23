@@ -1,6 +1,46 @@
 {
-    "followers": "Followers",
-    "@followers": {
-      "description": "Nombre de followers"
+    "reserveAccountTitle": "Reservez votre compte",
+    "@reserveAccountTitle": {
+      "description": "Reservez votre compte"
+    },
+    "reserveAccountText": "Vous pouvez déjà reserver votre compte en choisissant un nom d'utilisateur qui vous représentera.",
+    "@reserveAccountText": {
+      "description": "Vous pouvez déjà reserver votre compte en choisissant un nom d'utilisateur qui vous représentera."
+    },
+    "usernameLabelForm": "Entre un nom d'utilisateur",
+    "@usernameLabelForm": {
+      "description": "Entre un nom d'utilisateur"
+    },
+    "usernameErrorMessage": "Votre nom d'utilisateur est requis.",
+    "@usernameErrorMessage": {
+      "description": "Votre nom d'utilisateur est requis."
+    },
+    "slugLabelForm": "Votre identifiant pour être le suivant...",
+    "@slugLabelForm": {
+      "description": "Votre identifiant pour être le suivant..."
+    },
+    "slugErrorMessage": "Le slug doit contenir que des lettres en minuscules sans espace (ex: john-doe).",
+    "@slugErrorMessage": {
+      "description": "Le slug doit contenir que des lettres en minuscules sans espace (ex: john-doe)."
+    },
+    "phoneLabelForm": "Reservez votre compte avec votre téléphone",
+    "@phoneLabelForm": {
+      "description": "Reservez votre compte avec votre téléphone"
+    },
+    "phoneErrorMessage": "Le numéro de téléphone doit commencer par +33 puis votre numéro dans le zéro (ex: +33601010101).",
+    "@phoneErrorMessage": {
+      "description": "Le numéro de téléphone doit commencer par +33 puis votre numéro dans le zéro."
+    },
+    "reserveLabelForm": "Reservez",
+    "@reserveLabelForm": {
+      "description": "Reservez"
+    },
+    "slugAlreadyExistsErrorMessage": "L'identifiant que vous avez saisi existe déjà...",
+    "@slugAlreadyExistsErrorMessage": {
+      "description": "L'identifiant que vous avez saisi existe déjà..."
+    },
+    "phoneAlreadyExistsErrorMessage": "Une réservation existe déjà avec ce numéro de téléphone.",
+    "@phoneAlreadyExistsErrorMessage": {
+      "description": "Une réservation existe déjà avec ce numéro de téléphone."
     }
 }
