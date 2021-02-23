@@ -34,5 +34,13 @@
     "reserveLabelForm": "Reservez",
     "@reserveLabelForm": {
       "description": "Reservez"
+    },
+    "slugAlreadyExistsErrorMessage": "L'identifiant que vous avez saisi existe déjà...",
+    "@slugAlreadyExistsErrorMessage": {
+      "description": "L'identifiant que vous avez saisi existe déjà..."
+    },
+    "phoneAlreadyExistsErrorMessage": "Une réservation existe déjà avec ce numéro de téléphone.",
+    "@phoneAlreadyExistsErrorMessage": {
+      "description": "Une réservation existe déjà avec ce numéro de téléphone."
     }
 }

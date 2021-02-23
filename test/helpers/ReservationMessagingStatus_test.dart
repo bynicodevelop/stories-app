@@ -10,7 +10,12 @@ main() {
     final GlobalKey<ScaffoldState> scaffoldState = GlobalKey<ScaffoldState>();
 
     ReservationMessagingStatus reservationMessagingStatus =
-        ReservationMessagingStatus();
+        ReservationMessagingStatus({
+      ReservationStatus.slugAlreadyExists:
+          "L'identifiant que vous avez saisi existe déjà...",
+      ReservationStatus.phoneAlreadyExists:
+          "Une réservation existe déjà avec ce numéro de téléphone.",
+    });
 
     await tester.pumpWidget(MaterialApp(
       home: Scaffold(
@@ -42,7 +47,12 @@ main() {
     final GlobalKey<ScaffoldState> scaffoldState = GlobalKey<ScaffoldState>();
 
     ReservationMessagingStatus reservationMessagingStatus =
-        ReservationMessagingStatus();
+        ReservationMessagingStatus({
+      ReservationStatus.slugAlreadyExists:
+          "L'identifiant que vous avez saisi existe déjà...",
+      ReservationStatus.phoneAlreadyExists:
+          "Une réservation existe déjà avec ce numéro de téléphone.",
+    });
 
     await tester.pumpWidget(MaterialApp(
       home: Scaffold(

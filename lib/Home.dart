@@ -16,9 +16,13 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   PageController pageController = PageController();
 
+  bool _isFinished = false;
+
   List<Widget> _stories;
 
   _next() {
+    if (_isFinished) return;
+
     if (context.read<StorynextBloc>().state.currentIndex <
         _stories.length - 1) {
       pageController.nextPage(
@@ -26,6 +30,8 @@ class _HomeState extends State<Home> {
         curve: Curves.easeIn,
       );
     } else {
+      setState(() => _isFinished = true);
+
       Navigator.push(
         context,
         MaterialPageRoute(

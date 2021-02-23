@@ -63,10 +63,16 @@ class _ReservationScreenState extends State<ReservationScreen> {
                     ),
                     BlocListener<ReservationBloc, ReservationState>(
                       listener: (context, state) {
-                        ReservationMessagingStatus reservationMessagingStatus =
-                            ReservationMessagingStatus();
                         print(
                             'ReservationBloc state listener: ${state.status}');
+
+                        ReservationMessagingStatus reservationMessagingStatus =
+                            ReservationMessagingStatus({
+                          ReservationStatus.slugAlreadyExists:
+                              t(context).slugAlreadyExistsErrorMessage,
+                          ReservationStatus.phoneAlreadyExists:
+                              t(context).phoneAlreadyExistsErrorMessage,
+                        });
 
                         if (state.status == ReservationStatus.complete) {
                           Navigator.pushAndRemoveUntil(
