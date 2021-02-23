@@ -37,7 +37,13 @@ class _MainButtonState extends State<MainButton> {
                   color: Colors.white,
                   size: 15.0,
                 )
-              : Text(widget.label),
+              : Text(
+                  widget.label,
+                  style: TextStyle(
+                    fontSize: 18.0,
+                    letterSpacing: 1.2,
+                  ),
+                ),
         ),
       ),
     );

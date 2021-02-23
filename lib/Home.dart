@@ -1,5 +1,6 @@
 import 'package:app/blocs/bloc.dart';
 import 'package:app/blocs/storynext/bloc.dart';
+import 'package:app/screens/authentication/ReservationScreen.dart';
 import 'package:app/widgets/StoryProgress.dart';
 import 'package:app/widgets/StoryView.dart';
 import 'package:flutter/material.dart';
@@ -15,13 +16,23 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   PageController pageController = PageController();
 
-  List<StoryView> _stories;
+  List<Widget> _stories;
 
   _next() {
-    pageController.nextPage(
-      duration: Duration(milliseconds: 150),
-      curve: Curves.easeIn,
-    );
+    if (context.read<StorynextBloc>().state.currentIndex <
+        _stories.length - 1) {
+      pageController.nextPage(
+        duration: Duration(milliseconds: 150),
+        curve: Curves.easeIn,
+      );
+    } else {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => ReservationScreen(),
+        ),
+      );
+    }
   }
 
   @override
@@ -85,15 +96,14 @@ class _HomeState extends State<Home> {
     return Scaffold(
       body: BlocBuilder<StorynextBloc, StorynextState>(
         builder: (context, state) {
-          print('Home state: $state');
           return Stack(
             children: [
               PageView(
                 controller: pageController,
                 children: _stories,
-                onPageChanged: (index) => context
-                    .read<StorynextBloc>()
-                    .add(StoryNextPageEvent(index)),
+                onPageChanged: (index) => context.read<StorynextBloc>().add(
+                      StoryNextPageEvent(index),
+                    ),
               ),
               Padding(
                 padding: const EdgeInsets.only(

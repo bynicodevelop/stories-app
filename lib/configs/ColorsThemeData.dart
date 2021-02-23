@@ -10,7 +10,7 @@ class ColorsThemeData {
 
   static TextTheme _textTheme = TextTheme(
     headline1: TextStyle(
-      fontSize: 65.0,
+      fontSize: 60.0,
     ),
     bodyText1: TextStyle(
       fontSize: 18.0,
