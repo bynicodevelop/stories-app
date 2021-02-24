@@ -44,3 +44,7 @@ ios/Runner/GoogleService-Info.plist
 android/app/google-services.json
 android/app/google-services-production.json
 assets/images/preview
+
+*.icloud
+ios/Flutter/Generated*.xcconfig
+ios/Flutter/flutter_export_environment*.sh

@@ -10,7 +10,7 @@ class StorynextBloc extends Bloc<StorynextEvent, StorynextState> {
   Stream<StorynextState> mapEventToState(
     StorynextEvent event,
   ) async* {
-    print('event: $event');
+    print('StorynextBloc event: $event');
 
     if (event is StoryNextPageEvent) {
       yield state.copyWith(event.index);
