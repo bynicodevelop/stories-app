@@ -27,6 +27,7 @@ class TextInput extends StatelessWidget {
         vertical: 5.0,
       ),
       child: TextFormField(
+        textInputAction: TextInputAction.next,
         initialValue: initialValue ?? null,
         focusNode: focusNode ?? null,
         controller: controller ?? null,
