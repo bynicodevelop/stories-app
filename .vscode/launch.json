@@ -5,9 +5,20 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "app",
+            "name": "Flutter production",
+            "type": "dart",
             "request": "launch",
-            "type": "dart"
-        }
+            "program": "lib/main.dart"
+        },
+        {
+            "name": "Flutter Development",
+            "type": "dart",
+            "request": "launch",
+            "program": "lib/main.dart",
+            "args": [
+                "--dart-define",
+                "MODE=development"
+            ]
+        },
     ]
 }
