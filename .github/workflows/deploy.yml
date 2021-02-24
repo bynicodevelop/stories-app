@@ -33,6 +33,9 @@ jobs:
           key: ${{ runner.os }}-pub-${{ hashFiles('**/pubspec.lock') }}
           restore-keys: ${{ runner.os }}-pub-
 
+      - name: Clean flutter
+        run: flutter clean
+
       - name: Download pub dependencies
         run: flutter pub get
 
