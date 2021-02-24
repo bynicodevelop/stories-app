@@ -23,14 +23,23 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
+  flutter_localizations:
+    sdk: flutter
+
+  intl: ^0.16.1
   
   flutter_bloc: ^6.1.2
   equatable: ^1.2.6
 
+  formz: ^0.3.2
+
   services:
     git:
       url: git://github.com/bynicodevelop/stories-services.git
+    # path: '../packages/services'
   
+  flutter_spinkit: ^4.1.2+1
   animator: ^2.0.2
 
   # The following adds the Cupertino Icons font to your application.
@@ -54,6 +63,7 @@ flutter_icons:
 
 # The following section is specific to Flutter.
 flutter:
+  generate: true
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
