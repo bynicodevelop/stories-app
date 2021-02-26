@@ -1,4 +1,3 @@
-import 'package:app/blocs/connectionform/connectionform_bloc.dart';
 import 'package:app/screens/authentication/ConnexionScreen.dart';
 import 'package:app/widgets/forms/MainButton.dart';
 import 'package:app/widgets/topography/Headline.dart';
@@ -7,9 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:services/blocs/bloc.dart';
 
 class HomeScreen extends StatelessWidget {
-  static Route route() {
-    return MaterialPageRoute<void>(builder: (_) => HomeScreen());
-  }
+  static Route route() => MaterialPageRoute<void>(builder: (_) => HomeScreen());
 
   const HomeScreen({Key key}) : super(key: key);
 

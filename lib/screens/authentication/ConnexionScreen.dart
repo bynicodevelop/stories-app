@@ -13,11 +13,9 @@ import 'package:services/blocs/bloc.dart';
 import 'package:services/exceptions/UserRepositoryException.dart';
 
 class ConnectionScreen extends StatelessWidget {
-  static Route route() {
-    return MaterialPageRoute<void>(
-      builder: (context) => ConnectionScreen(),
-    );
-  }
+  static Route route() => MaterialPageRoute<void>(
+        builder: (context) => ConnectionScreen(),
+      );
 
   final GlobalKey<ScaffoldState> _scaffoldState = GlobalKey<ScaffoldState>();
 

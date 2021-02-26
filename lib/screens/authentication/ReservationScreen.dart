@@ -15,15 +15,14 @@ import 'package:formz/formz.dart';
 import 'package:services/blocs/bloc.dart';
 import 'package:services/blocs/reservation/reservation_bloc.dart';
 
-class ReservationScreen extends StatefulWidget {
-  const ReservationScreen({Key key}) : super(key: key);
+class ReservationScreen extends StatelessWidget {
+  static Route route() => MaterialPageRoute(
+        builder: (context) => ReservationScreen(),
+      );
 
-  @override
-  _ReservationScreenState createState() => _ReservationScreenState();
-}
-
-class _ReservationScreenState extends State<ReservationScreen> {
   final GlobalKey<ScaffoldState> _scaffoldState = GlobalKey<ScaffoldState>();
+
+  ReservationScreen({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

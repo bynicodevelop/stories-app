@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:animator/animator.dart';
+import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
   final Function onEndAnimation;
@@ -19,14 +19,16 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).primaryColor,
       body: Container(
         child: Align(
           alignment: Alignment(0.0, -0.3),
           child: widget.isAnimate
               ? Animator(
-                  endAnimationListener: (state) {
+                  endAnimationListener: (animationState) {
                     if (widget.onEndAnimation != null &&
-                        state.controller.status == AnimationStatus.completed) {
+                        animationState.controller.status ==
+                            AnimationStatus.completed) {
                       widget.onEndAnimation();
                     }
                   },

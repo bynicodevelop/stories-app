@@ -15,6 +15,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:services/blocs/authentication/authentication_bloc.dart';
 import 'package:services/blocs/authentication/authentication_state.dart';
+import 'package:services/blocs/bloc.dart';
 import 'package:services/services.dart';
 
 // Permet de définir si on est en dev mode
@@ -70,38 +71,41 @@ class App extends StatelessWidget {
           create: (context) => ConnectionFormBloc(),
         ),
       ],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Run new stories...',
-        theme: ColorsThemeData.lightThemeData,
-        localizationsDelegates: [
-          AppLocalizations.delegate,
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-        ],
-        supportedLocales: [
-          const Locale('fr', ''),
-        ],
-        home: BlocListener<AuthenticationBloc, AuthenticationState>(
-          listener: (context, state) {
-            print('Main $state');
-
-            if (state is Authenticated) {
-              Navigator.pushAndRemoveUntil(
-                context,
-                HomeScreen.route(),
-                (_) => false,
-              );
-            } else if (state is Unauthenticated) {
-              Navigator.pushAndRemoveUntil(
-                context,
-                ConnectionScreen.route(),
-                (_) => false,
-              );
-            }
-          },
-          child: SplashScreen(),
+      child: BlocBuilder<AuthenticationBloc, AuthenticationState>(
+        builder: (context, state) => MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Run new stories...',
+          theme: ColorsThemeData.lightThemeData,
+          localizationsDelegates: [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: [
+            const Locale('fr', ''),
+          ],
+          home: BlocListener<AuthenticationBloc, AuthenticationState>(
+            listener: (context, state) {
+              if (state is Authenticated) {
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  HomeScreen.route(),
+                  (_) => false,
+                );
+              } else if (state is Unauthenticated) {
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  ReservationScreen.route(),
+                  (_) => false,
+                );
+              }
+            },
+            child: SplashScreen(
+              onEndAnimation: () =>
+                  context.read<AuthenticationBloc>().add(AppStarted()),
+            ),
+          ),
         ),
       ),
     );
