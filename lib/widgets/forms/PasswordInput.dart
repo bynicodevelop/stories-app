@@ -42,7 +42,5 @@ class PasswordInput extends StatelessWidget {
         ),
       ),
     );
-
-    ;
   }
 }
