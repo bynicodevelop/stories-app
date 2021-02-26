@@ -1,5 +1,10 @@
+import 'package:app/blocs/connectionform/connectionform_bloc.dart';
+import 'package:app/screens/authentication/ConnexionScreen.dart';
+import 'package:app/widgets/forms/MainButton.dart';
 import 'package:app/widgets/topography/Headline.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:services/blocs/bloc.dart';
 
 class HomeScreen extends StatelessWidget {
   static Route route() {
@@ -11,11 +16,34 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Container(
-          child: Headline(
-            text: 'Vous êtes connecté',
-          ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 20.0,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Headline(
+              text: 'Vous êtes connecté',
+            ),
+            BlocListener<AuthenticationBloc, AuthenticationState>(
+              listener: (context, state) {
+                if (state is Unauthenticated) {
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    ConnectionScreen.route(),
+                    (_) => false,
+                  );
+                }
+              },
+              child: MainButton(
+                label: 'Deconnection',
+                onPressed: () =>
+                    context.read<AuthenticationBloc>().add(SignOut()),
+              ),
+            )
+          ],
         ),
       ),
     );

@@ -92,6 +92,12 @@ class App extends StatelessWidget {
                 HomeScreen.route(),
                 (_) => false,
               );
+            } else if (state is Unauthenticated) {
+              Navigator.pushAndRemoveUntil(
+                context,
+                ConnectionScreen.route(),
+                (_) => false,
+              );
             }
           },
           child: SplashScreen(),
