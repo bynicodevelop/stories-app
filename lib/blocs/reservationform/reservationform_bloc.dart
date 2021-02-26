@@ -15,21 +15,21 @@ class ReservationformBloc
   Stream<ReservationformState> mapEventToState(
     ReservationformEvent event,
   ) async* {
-    if (event is UsernameChanged) {
+    if (event is UsernameFormChanged) {
       final username = Username.dirty(event.username);
 
       yield state.copyWith(
         username: username.valid ? username : Username.pure(event.username),
         status: Formz.validate([username, state.slug, state.phoneNumber]),
       );
-    } else if (event is SlugChanged) {
+    } else if (event is SlugFormChanged) {
       final slug = Slug.dirty(event.slug);
       print(event);
       yield state.copyWith(
         slug: slug.valid ? slug : Slug.pure(event.slug),
         status: Formz.validate([slug, state.username, state.phoneNumber]),
       );
-    } else if (event is PhoneNumberChanged) {
+    } else if (event is PhoneNumberFormChanged) {
       final phoneNumber = PhoneNumber.dirty(event.phoneNumber);
 
       yield state.copyWith(

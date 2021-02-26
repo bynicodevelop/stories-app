@@ -42,5 +42,37 @@
     "phoneAlreadyExistsErrorMessage": "Une réservation existe déjà avec ce numéro de téléphone.",
     "@phoneAlreadyExistsErrorMessage": {
       "description": "Une réservation existe déjà avec ce numéro de téléphone."
+    },
+    "passwordCodeLabelForm": "Entrez votre mot de passe",
+    "@passwordCodeLabelForm": {
+      "description": "Entrez votre mot de passe"
+    },
+    "passwordCodeErrorMessage": "Votre mot de passe doit contenir au moins 6 caracètres.",
+    "@passwordCodeErrorMessage": {
+      "description": "Votre mot de passe doit contenir au moins 6 caracètres."
+    },
+    "emailCodeLabelForm": "Entrez votre email",
+    "@emailCodeLabelForm": {
+      "description": "Entrez votre email"
+    },
+    "emailCodeErrorMessage": "L'email que vous avez saisi n'est pas valide",
+    "@emailCodeErrorMessage": {
+      "description": "L'email que vous avez saisi n'est pas valide"
+    },
+    "connectionButtonLabelForm": "Connexion",
+    "@connectionButtonLabelForm": {
+      "description": "Connexion"
+    },
+    "connexionFormTitle": "Connexion",
+    "@connexionFormTitle": {
+      "description": "Connexion"
+    },
+    "badCredentialsErrorMessage": "Vos identiants ne semblent pas correspondre à un compte inscrit.",
+    "@badCredentialsErrorMessage": {
+      "description": "Vos identiants ne semblent pas correspondre à un compte inscrit."
+    },
+    "tooManyRequestsErrorMessage": "Il y a eu trop de tentatives de connexion. Veuillez rééssayer plus tard. (vous avez été bloqué par mesure de sécurité)",
+    "@tooManyRequestsErrorMessage": {
+      "description": "Il y a eu trop de tentatives de connexion. Veuillez rééssayer plus tard. (vous avez été bloqué par mesure de sécurité)"
     }
 }

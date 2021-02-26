@@ -7,10 +7,10 @@ abstract class ReservationformEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class UsernameChanged extends ReservationformEvent {
+class UsernameFormChanged extends ReservationformEvent {
   final String username;
 
-  const UsernameChanged({
+  const UsernameFormChanged({
     this.username,
   });
 
@@ -18,10 +18,10 @@ class UsernameChanged extends ReservationformEvent {
   List<Object> get props => [username];
 }
 
-class SlugChanged extends ReservationformEvent {
+class SlugFormChanged extends ReservationformEvent {
   final String slug;
 
-  const SlugChanged({
+  const SlugFormChanged({
     this.slug,
   });
 
@@ -29,10 +29,10 @@ class SlugChanged extends ReservationformEvent {
   List<Object> get props => [slug];
 }
 
-class PhoneNumberChanged extends ReservationformEvent {
+class PhoneNumberFormChanged extends ReservationformEvent {
   final String phoneNumber;
 
-  const PhoneNumberChanged({
+  const PhoneNumberFormChanged({
     this.phoneNumber,
   });
 

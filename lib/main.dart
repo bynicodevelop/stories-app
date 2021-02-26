@@ -1,6 +1,11 @@
-import 'package:app/Home.dart';
 import 'package:app/blocs/bloc.dart';
+import 'package:app/blocs/connectionform/bloc.dart';
+import 'package:app/blocs/emailinput/bloc.dart';
+import 'package:app/blocs/reservationform/bloc.dart';
+import 'package:app/blocs/sluginput/bloc.dart';
+import 'package:app/blocs/usernameinput/bloc.dart';
 import 'package:app/configs/ColorsThemeData.dart';
+import 'package:app/screens/authentication/ConnexionScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -41,6 +46,24 @@ class App extends StatelessWidget {
         BlocProvider<ReservationformBloc>(
           create: (context) => ReservationformBloc(),
         ),
+        BlocProvider<PasswordInputBloc>(
+          create: (context) => PasswordInputBloc(),
+        ),
+        BlocProvider<PhoneNumberInputBloc>(
+          create: (context) => PhoneNumberInputBloc(),
+        ),
+        BlocProvider<SlugInputBloc>(
+          create: (context) => SlugInputBloc(),
+        ),
+        BlocProvider<UsernameInputBloc>(
+          create: (context) => UsernameInputBloc(),
+        ),
+        BlocProvider<EmailInputBloc>(
+          create: (context) => EmailInputBloc(),
+        ),
+        BlocProvider<ConnectionFormBloc>(
+          create: (context) => ConnectionFormBloc(),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -55,7 +78,7 @@ class App extends StatelessWidget {
         supportedLocales: [
           const Locale('fr', ''),
         ],
-        home: Home(),
+        home: ConnectionScreen(),
       ),
     );
   }
