@@ -8,7 +8,7 @@ class SplashScreen extends StatefulWidget {
   const SplashScreen({
     Key key,
     this.onEndAnimation,
-    this.isAnimate,
+    this.isAnimate = true,
   }) : super(key: key);
 
   @override

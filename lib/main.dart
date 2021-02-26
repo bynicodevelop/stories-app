@@ -1,3 +1,4 @@
+import 'package:app/SplashScreen.dart';
 import 'package:app/blocs/bloc.dart';
 import 'package:app/blocs/connectionform/bloc.dart';
 import 'package:app/blocs/emailinput/bloc.dart';
@@ -5,11 +6,14 @@ import 'package:app/blocs/reservationform/bloc.dart';
 import 'package:app/blocs/sluginput/bloc.dart';
 import 'package:app/blocs/usernameinput/bloc.dart';
 import 'package:app/configs/ColorsThemeData.dart';
+import 'package:app/screens/HomeScreen.dart';
 import 'package:app/screens/authentication/ConnexionScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:services/blocs/authentication/authentication_bloc.dart';
+import 'package:services/blocs/authentication/authentication_state.dart';
 import 'package:services/services.dart';
 
 // Permet de définir si on est en dev mode
@@ -78,7 +82,20 @@ class App extends StatelessWidget {
         supportedLocales: [
           const Locale('fr', ''),
         ],
-        home: ConnectionScreen(),
+        home: BlocListener<AuthenticationBloc, AuthenticationState>(
+          listener: (context, state) {
+            print('Main $state');
+
+            if (state is Authenticated) {
+              Navigator.pushAndRemoveUntil(
+                context,
+                HomeScreen.route(),
+                (_) => false,
+              );
+            }
+          },
+          child: SplashScreen(),
+        ),
       ),
     );
   }

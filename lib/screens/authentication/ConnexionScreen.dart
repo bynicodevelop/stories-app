@@ -52,7 +52,6 @@ class ConnectionScreen extends StatelessWidget {
                           'BlocListener ConnectionFormBloc state: ${state.status}');
 
                       if (state.status == FormzStatus.submissionInProgress) {
-                        // TODO: Send form
                         context.read<AuthenticationBloc>().add(
                               SignInWithEmailAndPassword(
                                 email: state.email.value,
@@ -64,9 +63,6 @@ class ConnectionScreen extends StatelessWidget {
                     BlocListener<AuthenticationBloc, AuthenticationState>(
                         listener: (context, state) {
                       if (state is AuthenticationErrors) {
-                        print(
-                            'BlocListener ConneAuthenticationBlocctionFormBloc state: ${state.errorCode}');
-
                         _messagingStatus.message(
                           _scaffoldState.currentState,
                           state.errorCode,
