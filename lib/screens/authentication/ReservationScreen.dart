@@ -1,6 +1,7 @@
 import 'package:app/blocs/reservationform/bloc.dart';
 import 'package:app/helpers/MessagingStatus.dart';
 import 'package:app/helpers/Translate.dart';
+import 'package:app/screens/authentication/ConnexionScreen.dart';
 import 'package:app/screens/authentication/EndReservationScreen.dart';
 import 'package:app/widgets/forms/MainButton.dart';
 import 'package:app/widgets/forms/PhoneNumberInput.dart';
@@ -27,7 +28,29 @@ class _ReservationScreenState extends State<ReservationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       key: _scaffoldState,
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(
+              right: 20.0,
+            ),
+            child: GestureDetector(
+              onTap: () => Navigator.push(
+                context,
+                ConnectionScreen.route(),
+              ),
+              child: Icon(
+                Icons.person,
+                size: 26.0,
+                color: Colors.transparent,
+              ),
+            ),
+          )
+        ],
+      ),
       body: Center(
         child: SingleChildScrollView(
           child: Padding(
