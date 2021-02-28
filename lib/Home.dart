@@ -7,6 +7,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Home extends StatefulWidget {
+  static Route route() {
+    return MaterialPageRoute(
+      builder: (context) => Home(),
+    );
+  }
+
   const Home({Key key}) : super(key: key);
 
   @override
@@ -32,11 +38,12 @@ class _HomeState extends State<Home> {
     } else {
       setState(() => _isFinished = true);
 
-      Navigator.push(
+      Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(
           builder: (context) => ReservationScreen(),
         ),
+        (_) => false,
       );
     }
   }
