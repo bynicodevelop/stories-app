@@ -108,6 +108,10 @@ class ReservationScreen extends StatelessWidget {
                           _scaffoldState.currentState,
                           state.status.toString(),
                         );
+
+                        context
+                            .read<ReservationformBloc>()
+                            .add(SubmissionFailure());
                       },
                     )
                   ],
@@ -117,6 +121,7 @@ class ReservationScreen extends StatelessWidget {
                       builder: (context, stateForm) {
                         return BlocBuilder<ReservationBloc, ReservationState>(
                             builder: (context, state) {
+                          print('stateForm: ${stateForm.status}');
                           return Form(
                               child: Column(
                             children: [
@@ -148,11 +153,14 @@ class ReservationScreen extends StatelessWidget {
                               MainButton(
                                 label:
                                     t(context).reserveLabelForm.toUpperCase(),
-                                onPressed: () {
-                                  context
-                                      .read<ReservationformBloc>()
-                                      .add(FormSubmitted());
-                                },
+                                onPressed: stateForm.status ==
+                                        FormzStatus.submissionInProgress
+                                    ? null
+                                    : () {
+                                        context
+                                            .read<ReservationformBloc>()
+                                            .add(FormSubmitted());
+                                      },
                               ),
                             ],
                           ));

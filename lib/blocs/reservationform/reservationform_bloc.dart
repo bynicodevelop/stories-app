@@ -55,6 +55,10 @@ class ReservationformBloc
           status: FormzStatus.submissionInProgress,
         );
       }
+    } else if (event is SubmissionFailure) {
+      yield state.copyWith(
+        status: FormzStatus.submissionFailure,
+      );
     }
   }
 }
