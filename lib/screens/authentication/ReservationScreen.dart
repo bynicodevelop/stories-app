@@ -1,6 +1,7 @@
-import 'package:app/blocs/bloc.dart';
-import 'package:app/helpers/ReservationMessagingStatus.dart';
+import 'package:app/blocs/reservationform/bloc.dart';
+import 'package:app/helpers/MessagingStatus.dart';
 import 'package:app/helpers/Translate.dart';
+import 'package:app/screens/authentication/ConnexionScreen.dart';
 import 'package:app/screens/authentication/EndReservationScreen.dart';
 import 'package:app/widgets/forms/MainButton.dart';
 import 'package:app/widgets/forms/PhoneNumberInput.dart';
@@ -14,20 +15,41 @@ import 'package:formz/formz.dart';
 import 'package:services/blocs/bloc.dart';
 import 'package:services/blocs/reservation/reservation_bloc.dart';
 
-class ReservationScreen extends StatefulWidget {
-  const ReservationScreen({Key key}) : super(key: key);
+class ReservationScreen extends StatelessWidget {
+  static Route route() => MaterialPageRoute(
+        builder: (context) => ReservationScreen(),
+      );
 
-  @override
-  _ReservationScreenState createState() => _ReservationScreenState();
-}
-
-class _ReservationScreenState extends State<ReservationScreen> {
   final GlobalKey<ScaffoldState> _scaffoldState = GlobalKey<ScaffoldState>();
+
+  ReservationScreen({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       key: _scaffoldState,
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(
+              right: 20.0,
+            ),
+            child: GestureDetector(
+              onTap: () => Navigator.push(
+                context,
+                ConnectionScreen.route(),
+              ),
+              child: Icon(
+                Icons.person,
+                size: 26.0,
+                color: Colors.transparent,
+              ),
+            ),
+          )
+        ],
+      ),
       body: Center(
         child: SingleChildScrollView(
           child: Padding(
@@ -50,7 +72,6 @@ class _ReservationScreenState extends State<ReservationScreen> {
                         print(
                             'ReservationformBloc state listener: ${state.status}');
                         if (state.status == FormzStatus.submissionInProgress) {
-                          print('CreateReservation: $state');
                           context.read<ReservationBloc>().add(
                                 CreateReservation(
                                   displayName: state.username.value,
@@ -66,11 +87,10 @@ class _ReservationScreenState extends State<ReservationScreen> {
                         print(
                             'ReservationBloc state listener: ${state.status}');
 
-                        ReservationMessagingStatus reservationMessagingStatus =
-                            ReservationMessagingStatus({
-                          ReservationStatus.slugAlreadyExists:
+                        MessagingStatus messagingStatus = MessagingStatus({
+                          ReservationStatus.slugAlreadyExists.toString():
                               t(context).slugAlreadyExistsErrorMessage,
-                          ReservationStatus.phoneAlreadyExists:
+                          ReservationStatus.phoneAlreadyExists.toString():
                               t(context).phoneAlreadyExistsErrorMessage,
                         });
 
@@ -84,52 +104,60 @@ class _ReservationScreenState extends State<ReservationScreen> {
                           );
                         }
 
-                        reservationMessagingStatus.message(
+                        messagingStatus.message(
                           _scaffoldState.currentState,
-                          state.status,
+                          state.status.toString(),
                         );
                       },
                     )
                   ],
-                  child: Form(
-                    child: Column(
-                      children: [
-                        UsernameInput(
-                          label: t(context).usernameLabelForm,
-                          errorMessage: t(context).usernameErrorMessage,
-                        ),
-                        SlugInput(
-                          label: t(context).slugLabelForm,
-                          errorMessage: t(context).slugErrorMessage,
-                        ),
-                        PhoneNumberInput(
-                          label: t(context).phoneLabelForm,
-                          errorMessage: t(context).phoneErrorMessage,
-                        ),
-                        BlocBuilder<ReservationformBloc, ReservationformState>(
-                          buildWhen: (previous, current) =>
-                              previous.status != current.status,
-                          builder: (context, stateForm) {
-                            return BlocBuilder<ReservationBloc,
-                                ReservationState>(
-                              builder: (context, state) {
-                                return MainButton(
-                                  label:
-                                      t(context).reserveLabelForm.toUpperCase(),
-                                  onPressed: () {
-                                    print(stateForm.props);
-                                    context
-                                        .read<ReservationformBloc>()
-                                        .add(FormSubmitted());
-                                  },
-                                );
-                              },
-                            );
-                          },
-                        )
-                      ],
-                    ),
-                  ),
+                  child: BlocBuilder<ReservationformBloc, ReservationformState>(
+                      buildWhen: (previous, current) =>
+                          previous.status != current.status,
+                      builder: (context, stateForm) {
+                        return BlocBuilder<ReservationBloc, ReservationState>(
+                            builder: (context, state) {
+                          return Form(
+                              child: Column(
+                            children: [
+                              UsernameInput(
+                                label: t(context).usernameLabelForm,
+                                errorMessage: t(context).usernameErrorMessage,
+                                onValidatedValue: (value) =>
+                                    context.read<ReservationformBloc>().add(
+                                          UsernameFormChanged(username: value),
+                                        ),
+                              ),
+                              SlugInput(
+                                label: t(context).slugLabelForm,
+                                errorMessage: t(context).slugErrorMessage,
+                                onValidedValue: (value) =>
+                                    context.read<ReservationformBloc>().add(
+                                          SlugFormChanged(slug: value),
+                                        ),
+                              ),
+                              PhoneNumberInput(
+                                label: t(context).phoneLabelForm,
+                                errorMessage: t(context).phoneErrorMessage,
+                                onValidedValue: (value) =>
+                                    context.read<ReservationformBloc>().add(
+                                          PhoneNumberFormChanged(
+                                              phoneNumber: value),
+                                        ),
+                              ),
+                              MainButton(
+                                label:
+                                    t(context).reserveLabelForm.toUpperCase(),
+                                onPressed: () {
+                                  context
+                                      .read<ReservationformBloc>()
+                                      .add(FormSubmitted());
+                                },
+                              ),
+                            ],
+                          ));
+                        });
+                      }),
                 ),
               ],
             ),
