@@ -1,3 +1,4 @@
+import 'package:app/Home.dart';
 import 'package:app/SplashScreen.dart';
 import 'package:app/blocs/bloc.dart';
 import 'package:app/blocs/connectionform/bloc.dart';
@@ -95,7 +96,7 @@ class App extends StatelessWidget {
               } else if (state is Unauthenticated) {
                 Navigator.pushAndRemoveUntil(
                   context,
-                  ReservationScreen.route(),
+                  Home.route(),
                   (_) => false,
                 );
               }
