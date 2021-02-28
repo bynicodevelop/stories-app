@@ -8,6 +8,7 @@ class TextInput extends StatelessWidget {
   final String initialValue;
   final String errorText;
   final Icon prefixIcon;
+  final bool isSecret;
 
   const TextInput({
     Key key,
@@ -18,6 +19,7 @@ class TextInput extends StatelessWidget {
     this.errorText,
     this.focusNode,
     this.prefixIcon,
+    this.isSecret = false,
   }) : super(key: key);
 
   @override
@@ -27,6 +29,7 @@ class TextInput extends StatelessWidget {
         vertical: 5.0,
       ),
       child: TextFormField(
+        obscureText: isSecret,
         textInputAction: TextInputAction.next,
         initialValue: initialValue ?? null,
         focusNode: focusNode ?? null,

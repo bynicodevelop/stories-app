@@ -48,3 +48,6 @@ assets/images/preview
 *.icloud
 ios/Flutter/Generated*.xcconfig
 ios/Flutter/flutter_export_environment*.sh
+coverage
+.flutter-plugins-dependencies*
+.flutter-plugins*
