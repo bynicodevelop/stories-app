@@ -30,7 +30,7 @@ class ReservationScreen extends StatelessWidget {
       extendBodyBehindAppBar: true,
       key: _scaffoldState,
       appBar: AppBar(
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        backgroundColor: Colors.transparent,
         actions: [
           Padding(
             padding: const EdgeInsets.only(
