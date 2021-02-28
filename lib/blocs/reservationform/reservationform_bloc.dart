@@ -53,10 +53,6 @@ class ReservationformBloc
         yield state.copyWith(
           status: FormzStatus.submissionInProgress,
         );
-        //   await Future<void>.delayed(const Duration(seconds: 1));
-        //   yield state.copyWith(
-        //     status: FormzStatus.submissionSuccess,
-        //   );
       }
     }
   }
