@@ -38,9 +38,10 @@ class ReservationformBloc
               : PhoneNumber.dirty(event.phoneNumber),
           status: Formz.validate([phoneNumber, state.slug, state.username]));
     } else if (event is FormSubmitted) {
-      final username = Username.dirty(state.username.value);
-      final slug = Slug.dirty(state.slug.value);
-      final phoneNumber = PhoneNumber.dirty(state.phoneNumber.value);
+      final Username username = Username.dirty(state.username.value);
+      final Slug slug = Slug.dirty(state.slug.value);
+      final PhoneNumber phoneNumber =
+          PhoneNumber.dirty(state.phoneNumber.value);
 
       yield state.copyWith(
         username: username,
