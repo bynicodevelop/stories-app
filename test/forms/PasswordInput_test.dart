@@ -66,4 +66,75 @@ main() {
     // ASSERT
     expect(result, '');
   });
+
+  testWidgets("Doit verifier que pas défaut le champs mot de passe est secret",
+      (WidgetTester tester) async {
+    // ARRANGE
+    final String enteredText = '12345';
+
+    await tester.pumpWidget(MultiBlocProvider(
+      providers: [
+        BlocProvider<PasswordInputBloc>(
+          create: (context) => PasswordInputBloc(),
+        ),
+      ],
+      child: MaterialApp(
+        home: Scaffold(
+          body: PasswordInput(
+            label: 'password',
+            errorMessage: '',
+            onValidedValue: (value) => null,
+          ),
+        ),
+      ),
+    ));
+
+    final Finder textInput = find.byType(TextInput);
+    await tester.enterText(textInput, enteredText);
+
+    // ACT
+    final TextInput textInputField = tester.firstWidget(find.byType(TextInput));
+
+    // ASSERT
+    expect(textInputField.isSecret, true);
+  });
+
+  testWidgets("Doit afficher le mot de passe en claire",
+      (WidgetTester tester) async {
+    // ARRANGE
+    final String enteredText = '12345';
+
+    await tester.pumpWidget(MultiBlocProvider(
+      providers: [
+        BlocProvider<PasswordInputBloc>(
+          create: (context) => PasswordInputBloc(),
+        ),
+      ],
+      child: MaterialApp(
+        home: Scaffold(
+          body: PasswordInput(
+            label: 'password',
+            errorMessage: '',
+            onValidedValue: (value) => null,
+          ),
+        ),
+      ),
+    ));
+
+    final Finder textInput = find.byType(TextInput);
+    await tester.enterText(textInput, enteredText);
+
+    final Finder changeStatePasswordIcon = find.byIcon(Icons.visibility);
+
+    // ACT
+    await tester.tap(changeStatePasswordIcon);
+    await tester.pumpAndSettle();
+
+    // // ASSERT
+    expect(find.byIcon(Icons.visibility_off), findsOneWidget);
+    expect(find.byIcon(Icons.visibility), findsNothing);
+
+    final TextInput textInputField = tester.firstWidget(find.byType(TextInput));
+    expect(textInputField.isSecret, false);
+  });
 }
