@@ -22,7 +22,7 @@ main() {
           body: PhoneNumberInput(
             label: 'Phone Number',
             errorMessage: '',
-            onValidatedValue: (value) => result = value,
+            onChanged: (value) => result = value,
           ),
         ),
       ),
@@ -36,7 +36,8 @@ main() {
     expect(result, enteredText);
   });
 
-  testWidgets("Ne doit pas retourer de valeur si invalide",
+  testWidgets(
+      "Doit retourer de valeur même invalide (avec un message d'erreur)",
       (WidgetTester tester) async {
     // ARRANGE
     final String enteredText = '12345';
@@ -52,8 +53,8 @@ main() {
         home: Scaffold(
           body: PhoneNumberInput(
             label: 'password',
-            errorMessage: '',
-            onValidatedValue: (value) => result = value,
+            errorMessage: 'error message',
+            onChanged: (value) => result = value,
           ),
         ),
       ),
@@ -62,8 +63,10 @@ main() {
     // ACT
     final Finder textInput = find.byType(TextInput);
     await tester.enterText(textInput, enteredText);
+    await tester.pumpAndSettle();
 
     // ASSERT
-    expect(result, '');
+    expect(find.text('error message'), findsOneWidget);
+    expect(result, '12345');
   });
 }

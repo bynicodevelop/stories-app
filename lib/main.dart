@@ -8,7 +8,6 @@ import 'package:app/blocs/sluginput/bloc.dart';
 import 'package:app/blocs/usernameinput/bloc.dart';
 import 'package:app/configs/ColorsThemeData.dart';
 import 'package:app/screens/HomeScreen.dart';
-import 'package:app/screens/authentication/ReservationScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';

@@ -3,16 +3,15 @@ import 'package:app/formModels/Password.dart';
 import 'package:app/widgets/forms/TextInput.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:formz/formz.dart';
 
 class PasswordInput extends StatelessWidget {
-  final Function(String) onValidatedValue;
+  final Function(String) onChanged;
   final String label;
   final String errorMessage;
 
   const PasswordInput({
     Key key,
-    @required this.onValidatedValue,
+    @required this.onChanged,
     @required this.label,
     @required this.errorMessage,
   }) : super(key: key);
@@ -21,9 +20,7 @@ class PasswordInput extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<PasswordInputBloc, PasswordInputState>(
       listener: (context, state) {
-        if (state.status == FormzStatus.valid) {
-          onValidatedValue(state.password.value);
-        }
+        onChanged(state.password.value);
       },
       child: BlocBuilder<PasswordInputBloc, PasswordInputState>(
         builder: (context, state) => TextInput(

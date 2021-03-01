@@ -5,13 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SlugInput extends StatelessWidget {
-  final Function(String) onValidatedValue;
+  final Function(String) onChanged;
   final String label;
   final String errorMessage;
 
   const SlugInput({
     Key key,
-    @required this.onValidatedValue,
+    @required this.onChanged,
     @required this.label,
     @required this.errorMessage,
   }) : super(key: key);
@@ -20,9 +20,7 @@ class SlugInput extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<SlugInputBloc, SlugInputState>(
       listener: (context, state) {
-        if (state.slug.valid) {
-          onValidatedValue(state.slug.value);
-        }
+        onChanged(state.slug.value);
       },
       child: BlocBuilder<SlugInputBloc, SlugInputState>(
         builder: (context, state) {

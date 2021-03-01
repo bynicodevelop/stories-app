@@ -22,7 +22,7 @@ main() {
           body: SlugInput(
             label: 'password',
             errorMessage: '',
-            onValidatedValue: (value) => result = value,
+            onChanged: (value) => result = value,
           ),
         ),
       ),
@@ -53,7 +53,7 @@ main() {
           body: SlugInput(
             label: 'password',
             errorMessage: '',
-            onValidatedValue: (value) => result = value,
+            onChanged: (value) => result = value,
           ),
         ),
       ),
@@ -67,7 +67,8 @@ main() {
     expect(result, enteredText);
   });
 
-  testWidgets("Ne doit pas retourer de valeur si invalide (john-DOE)",
+  testWidgets(
+      "Doit retourer de valeur meme invalide (john-DOE) avec un message d'erreur",
       (WidgetTester tester) async {
     // ARRANGE
     final String enteredText = 'john-DOE';
@@ -83,8 +84,8 @@ main() {
         home: Scaffold(
           body: SlugInput(
             label: 'slug',
-            errorMessage: '',
-            onValidatedValue: (value) => result = value,
+            errorMessage: 'error message',
+            onChanged: (value) => result = value,
           ),
         ),
       ),
@@ -93,12 +94,15 @@ main() {
     // ACT
     final Finder textInput = find.byType(TextInput);
     await tester.enterText(textInput, enteredText);
+    await tester.pumpAndSettle();
 
     // ASSERT
-    expect(result, '');
+    expect(find.text('error message'), findsOneWidget);
+    expect(result, 'john-DOE');
   });
 
-  testWidgets("Ne doit pas retourer de valeur si invalide (john doe)",
+  testWidgets(
+      "Doit retourer de valeur si invalide (john doe) avec un message d'erreur",
       (WidgetTester tester) async {
     // ARRANGE
     final String enteredText = 'john doe';
@@ -114,8 +118,8 @@ main() {
         home: Scaffold(
           body: SlugInput(
             label: 'slug',
-            errorMessage: '',
-            onValidatedValue: (value) => result = value,
+            errorMessage: 'error message',
+            onChanged: (value) => result = value,
           ),
         ),
       ),
@@ -124,8 +128,10 @@ main() {
     // ACT
     final Finder textInput = find.byType(TextInput);
     await tester.enterText(textInput, enteredText);
+    await tester.pumpAndSettle();
 
     // ASSERT
-    expect(result, '');
+    expect(find.text('error message'), findsOneWidget);
+    expect(result, 'john doe');
   });
 }
