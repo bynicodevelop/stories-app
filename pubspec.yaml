@@ -35,9 +35,9 @@ dependencies:
   formz: ^0.3.2
 
   services:
-    git:
-      url: git://github.com/bynicodevelop/stories-services.git
-    # path: '../packages/services'
+    # git:
+    #   url: git://github.com/bynicodevelop/stories-services.git
+    path: '../packages/services'
   
   flutter_spinkit: ^4.1.2+1
   animator: ^2.0.2

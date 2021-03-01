@@ -36,12 +36,11 @@ main() {
     expect(result, enteredText);
   });
 
-  testWidgets("Ne doit pas retourer de valeur si invalide",
+  testWidgets("Doit permet l'ajout d'une value par default",
       (WidgetTester tester) async {
-    // ARRANGE
-    final String enteredText = '12345';
-    String result = '';
+    String emailValidated = '';
 
+    // ARRANGE
     await tester.pumpWidget(MultiBlocProvider(
       providers: [
         BlocProvider<EmailInputBloc>(
@@ -53,17 +52,82 @@ main() {
           body: EmailInput(
             label: 'email',
             errorMessage: '',
-            onValidatedValue: (value) => result = value,
+            onValidatedValue: (value) => emailValidated = value,
+            initialValue: 'john.doe@domain.tld',
           ),
         ),
       ),
     ));
 
     // ACT
-    final Finder textInput = find.byType(TextInput);
-    await tester.enterText(textInput, enteredText);
+    final TextInput textInput = tester.firstWidget(find.byType(TextInput));
 
     // ASSERT
-    expect(result, '');
+    expect(textInput.initialValue, 'john.doe@domain.tld');
+    expect(emailValidated, 'john.doe@domain.tld');
+  });
+
+  testWidgets(
+      "Doit afficher un message d'erreur si l'email initial est invalide",
+      (WidgetTester tester) async {
+    String emailValidated = '';
+
+    // ARRANGE
+    await tester.pumpWidget(MultiBlocProvider(
+      providers: [
+        BlocProvider<EmailInputBloc>(
+          create: (context) => EmailInputBloc(),
+        ),
+      ],
+      child: MaterialApp(
+        home: Scaffold(
+          body: EmailInput(
+            label: 'email',
+            errorMessage: 'error message',
+            onValidatedValue: (value) => emailValidated = value,
+            initialValue: 'john',
+          ),
+        ),
+      ),
+    ));
+
+    // ACT
+    await tester.pumpAndSettle();
+
+    final TextInput textInput = tester.firstWidget(find.byType(TextInput));
+    final Finder errorText = find.text('error message');
+
+    // ASSERT
+    expect(textInput.initialValue, 'john');
+    expect(emailValidated, '');
+    expect(errorText, findsOneWidget);
+  });
+
+  testWidgets("Doit être possible d'ajouter un text d'aide",
+      (WidgetTester tester) async {
+    // ARRANGE
+    await tester.pumpWidget(MultiBlocProvider(
+      providers: [
+        BlocProvider<EmailInputBloc>(
+          create: (context) => EmailInputBloc(),
+        ),
+      ],
+      child: MaterialApp(
+        home: Scaffold(
+          body: EmailInput(
+            label: 'email',
+            errorMessage: '',
+            onValidatedValue: (value) => null,
+            helperText: 'Helper content',
+          ),
+        ),
+      ),
+    ));
+
+    // ACT
+    final TextInput textInput = tester.firstWidget(find.byType(TextInput));
+
+    // ASSERT
+    expect(textInput.helperText, 'Helper content');
   });
 }

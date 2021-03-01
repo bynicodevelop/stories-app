@@ -9,12 +9,14 @@ class PasswordInput extends StatefulWidget {
   final Function(String) onValidedValue;
   final String label;
   final String errorMessage;
+  final String helperText;
 
   const PasswordInput({
     Key key,
     @required this.onValidedValue,
     @required this.label,
     @required this.errorMessage,
+    this.helperText,
   }) : super(key: key);
 
   @override
@@ -35,6 +37,7 @@ class _PasswordInputState extends State<PasswordInput> {
       child: BlocBuilder<PasswordInputBloc, PasswordInputState>(
         builder: (context, state) => TextInput(
           label: widget.label,
+          helperText: widget.helperText,
           isSecret: _isSecret,
           prefixIcon: Icon(Icons.lock),
           errorText: state.password.error != PasswordInputError.empty &&

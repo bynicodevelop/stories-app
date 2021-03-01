@@ -3,6 +3,7 @@ import 'package:app/SplashScreen.dart';
 import 'package:app/blocs/bloc.dart';
 import 'package:app/blocs/connectionform/bloc.dart';
 import 'package:app/blocs/emailinput/bloc.dart';
+import 'package:app/blocs/profileform/profileform_bloc.dart';
 import 'package:app/blocs/reservationform/bloc.dart';
 import 'package:app/blocs/sluginput/bloc.dart';
 import 'package:app/blocs/usernameinput/bloc.dart';
@@ -52,6 +53,12 @@ class App extends StatelessWidget {
         BlocProvider<ReservationformBloc>(
           create: (context) => ReservationformBloc(),
         ),
+        BlocProvider<ConnectionFormBloc>(
+          create: (context) => ConnectionFormBloc(),
+        ),
+        BlocProvider<ProfileFormBloc>(
+          create: (context) => ProfileFormBloc(),
+        ),
         BlocProvider<PasswordInputBloc>(
           create: (context) => PasswordInputBloc(),
         ),
@@ -66,9 +73,6 @@ class App extends StatelessWidget {
         ),
         BlocProvider<EmailInputBloc>(
           create: (context) => EmailInputBloc(),
-        ),
-        BlocProvider<ConnectionFormBloc>(
-          create: (context) => ConnectionFormBloc(),
         ),
       ],
       child: BlocBuilder<AuthenticationBloc, AuthenticationState>(
@@ -87,25 +91,19 @@ class App extends StatelessWidget {
           ],
           home: BlocListener<AuthenticationBloc, AuthenticationState>(
             listener: (context, state) {
-              Navigator.pushAndRemoveUntil(
-                context,
-                ProfileScreen.route(),
-                (_) => false,
-              );
-
-              // if (state is Authenticated) {
-              //   Navigator.pushAndRemoveUntil(
-              //     context,
-              //     HomeScreen.route(),
-              //     (_) => false,
-              //   );
-              // } else if (state is Unauthenticated) {
-              //   Navigator.pushAndRemoveUntil(
-              //     context,
-              //     Home.route(),
-              //     (_) => false,
-              //   );
-              // }
+              if (state is Authenticated) {
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  HomeScreen.route(),
+                  (_) => false,
+                );
+              } else if (state is Unauthenticated) {
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  Home.route(),
+                  (_) => false,
+                );
+              }
             },
             child: SplashScreen(
               onEndAnimation: () =>

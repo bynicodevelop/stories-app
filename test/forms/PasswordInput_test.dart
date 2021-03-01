@@ -137,4 +137,34 @@ main() {
     final TextInput textInputField = tester.firstWidget(find.byType(TextInput));
     expect(textInputField.isSecret, false);
   });
+
+  testWidgets("Doit afficher le mot de passe en claire",
+      (WidgetTester tester) async {
+    // ARRANGE
+    final String enteredText = '12345';
+
+    await tester.pumpWidget(MultiBlocProvider(
+      providers: [
+        BlocProvider<PasswordInputBloc>(
+          create: (context) => PasswordInputBloc(),
+        ),
+      ],
+      child: MaterialApp(
+        home: Scaffold(
+          body: PasswordInput(
+            label: 'password',
+            errorMessage: '',
+            onValidedValue: (value) => null,
+            helperText: 'Helper text',
+          ),
+        ),
+      ),
+    ));
+
+    final TextInput textInput = tester.firstWidget(find.byType(TextInput));
+
+    // ACT
+    // // ASSERT
+    expect(textInput.helperText, 'Helper text');
+  });
 }

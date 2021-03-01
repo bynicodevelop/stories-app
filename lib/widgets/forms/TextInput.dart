@@ -7,6 +7,7 @@ class TextInput extends StatelessWidget {
   final String label;
   final String initialValue;
   final String errorText;
+  final String helperText;
   final Icon prefixIcon;
   final Widget suffixIcon;
   final bool isSecret;
@@ -18,6 +19,7 @@ class TextInput extends StatelessWidget {
     this.controller,
     this.initialValue,
     this.errorText,
+    this.helperText,
     this.focusNode,
     this.prefixIcon,
     this.suffixIcon,
@@ -38,10 +40,12 @@ class TextInput extends StatelessWidget {
         controller: controller ?? null,
         onChanged: onChanged ?? null,
         decoration: InputDecoration(
+          helperText: helperText ?? null,
           prefixIcon: prefixIcon ?? null,
           suffixIcon: suffixIcon ?? null,
           errorText: errorText ?? null,
           errorMaxLines: 2,
+          helperMaxLines: 2,
           border: OutlineInputBorder(),
           labelText: label,
         ),
