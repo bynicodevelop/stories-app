@@ -5,13 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class PhoneNumberInput extends StatelessWidget {
-  final Function(String) onValidedValue;
+  final Function(String) onValidatedValue;
   final String label;
   final String errorMessage;
 
   const PhoneNumberInput({
     Key key,
-    @required this.onValidedValue,
+    @required this.onValidatedValue,
     @required this.label,
     @required this.errorMessage,
   }) : super(key: key);
@@ -21,7 +21,7 @@ class PhoneNumberInput extends StatelessWidget {
     return BlocListener<PhoneNumberInputBloc, PhoneNumberInputState>(
       listener: (context, state) {
         if (state.phoneNumber.valid) {
-          onValidedValue(state.phoneNumber.value);
+          onValidatedValue(state.phoneNumber.value);
         }
       },
       child: BlocBuilder<PhoneNumberInputBloc, PhoneNumberInputState>(

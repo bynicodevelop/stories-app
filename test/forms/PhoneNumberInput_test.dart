@@ -22,7 +22,7 @@ main() {
           body: PhoneNumberInput(
             label: 'Phone Number',
             errorMessage: '',
-            onValidedValue: (value) => result = value,
+            onValidatedValue: (value) => result = value,
           ),
         ),
       ),
@@ -53,7 +53,7 @@ main() {
           body: PhoneNumberInput(
             label: 'password',
             errorMessage: '',
-            onValidedValue: (value) => result = value,
+            onValidatedValue: (value) => result = value,
           ),
         ),
       ),

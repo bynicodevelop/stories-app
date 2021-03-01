@@ -136,7 +136,7 @@ class ReservationScreen extends StatelessWidget {
                               SlugInput(
                                 label: t(context).slugLabelForm,
                                 errorMessage: t(context).slugErrorMessage,
-                                onValidedValue: (value) =>
+                                onValidatedValue: (value) =>
                                     context.read<ReservationformBloc>().add(
                                           SlugFormChanged(slug: value),
                                         ),
@@ -144,7 +144,7 @@ class ReservationScreen extends StatelessWidget {
                               PhoneNumberInput(
                                 label: t(context).phoneLabelForm,
                                 errorMessage: t(context).phoneErrorMessage,
-                                onValidedValue: (value) =>
+                                onValidatedValue: (value) =>
                                     context.read<ReservationformBloc>().add(
                                           PhoneNumberFormChanged(
                                               phoneNumber: value),

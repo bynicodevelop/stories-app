@@ -22,7 +22,7 @@ main() {
           body: SlugInput(
             label: 'password',
             errorMessage: '',
-            onValidedValue: (value) => result = value,
+            onValidatedValue: (value) => result = value,
           ),
         ),
       ),
@@ -53,7 +53,7 @@ main() {
           body: SlugInput(
             label: 'password',
             errorMessage: '',
-            onValidedValue: (value) => result = value,
+            onValidatedValue: (value) => result = value,
           ),
         ),
       ),
@@ -84,7 +84,7 @@ main() {
           body: SlugInput(
             label: 'slug',
             errorMessage: '',
-            onValidedValue: (value) => result = value,
+            onValidatedValue: (value) => result = value,
           ),
         ),
       ),
@@ -115,7 +115,7 @@ main() {
           body: SlugInput(
             label: 'slug',
             errorMessage: '',
-            onValidedValue: (value) => result = value,
+            onValidatedValue: (value) => result = value,
           ),
         ),
       ),

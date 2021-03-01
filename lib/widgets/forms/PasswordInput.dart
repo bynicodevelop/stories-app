@@ -6,13 +6,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 
 class PasswordInput extends StatelessWidget {
-  final Function(String) onValidedValue;
+  final Function(String) onValidatedValue;
   final String label;
   final String errorMessage;
 
   const PasswordInput({
     Key key,
-    @required this.onValidedValue,
+    @required this.onValidatedValue,
     @required this.label,
     @required this.errorMessage,
   }) : super(key: key);
@@ -22,7 +22,7 @@ class PasswordInput extends StatelessWidget {
     return BlocListener<PasswordInputBloc, PasswordInputState>(
       listener: (context, state) {
         if (state.status == FormzStatus.valid) {
-          onValidedValue(state.password.value);
+          onValidatedValue(state.password.value);
         }
       },
       child: BlocBuilder<PasswordInputBloc, PasswordInputState>(

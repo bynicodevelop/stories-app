@@ -97,7 +97,7 @@ class ConnectionScreen extends StatelessWidget {
                           PasswordInput(
                             label: t(context).passwordCodeLabelForm,
                             errorMessage: t(context).passwordCodeErrorMessage,
-                            onValidedValue: (value) =>
+                            onValidatedValue: (value) =>
                                 context.read<ConnectionFormBloc>().add(
                                       ConnectionPasswordFormUpdated(
                                         password: value,
