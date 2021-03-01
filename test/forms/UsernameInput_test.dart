@@ -22,7 +22,7 @@ main() {
           body: UsernameInput(
             label: 'password',
             errorMessage: '',
-            onValidatedValue: (value) => result = value,
+            onChanged: (value) => result = value,
           ),
         ),
       ),
@@ -36,7 +36,7 @@ main() {
     expect(result, enteredText);
   });
 
-  testWidgets("Ne doit pas retourer de valeur si invalide (vide)",
+  testWidgets("Doit retourer de valeur meme invalide (vide) mais sans message",
       (WidgetTester tester) async {
     // ARRANGE
     final String enteredText = '';
@@ -52,8 +52,8 @@ main() {
         home: Scaffold(
           body: UsernameInput(
             label: 'slug',
-            errorMessage: '',
-            onValidatedValue: (value) => result = value,
+            errorMessage: 'error message',
+            onChanged: (value) => result = value,
           ),
         ),
       ),

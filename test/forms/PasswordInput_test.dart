@@ -22,7 +22,7 @@ main() {
           body: PasswordInput(
             label: 'password',
             errorMessage: '',
-            onValidedValue: (value) => result = value,
+            onChanged: (value) => result = value,
           ),
         ),
       ),
@@ -36,7 +36,7 @@ main() {
     expect(result, enteredText);
   });
 
-  testWidgets("Ne doit pas retourer de valeur si invalide",
+  testWidgets("Doit retourer de valeur même invalide",
       (WidgetTester tester) async {
     // ARRANGE
     final String enteredText = '12345';
@@ -52,8 +52,8 @@ main() {
         home: Scaffold(
           body: PasswordInput(
             label: 'password',
-            errorMessage: '',
-            onValidedValue: (value) => result = value,
+            errorMessage: 'error message',
+            onChanged: (value) => result = value,
           ),
         ),
       ),
@@ -62,12 +62,14 @@ main() {
     // ACT
     final Finder textInput = find.byType(TextInput);
     await tester.enterText(textInput, enteredText);
+    await tester.pumpAndSettle();
 
     // ASSERT
-    expect(result, '');
+    expect(find.text('error message'), findsOneWidget);
+    expect(result, '12345');
   });
 
-  testWidgets("Doit verifier que pas défaut le champs mot de passe est secret",
+  testWidgets("Doit verifier que par défaut le champs mot de passe est secret",
       (WidgetTester tester) async {
     // ARRANGE
     final String enteredText = '12345';
@@ -83,7 +85,7 @@ main() {
           body: PasswordInput(
             label: 'password',
             errorMessage: '',
-            onValidedValue: (value) => null,
+            onChanged: (value) => null,
           ),
         ),
       ),
@@ -115,7 +117,7 @@ main() {
           body: PasswordInput(
             label: 'password',
             errorMessage: '',
-            onValidedValue: (value) => null,
+            onChanged: (value) => null,
           ),
         ),
       ),
@@ -138,11 +140,8 @@ main() {
     expect(textInputField.isSecret, false);
   });
 
-  testWidgets("Doit afficher le mot de passe en claire",
-      (WidgetTester tester) async {
+  testWidgets("Doit afficher un message d'aide", (WidgetTester tester) async {
     // ARRANGE
-    final String enteredText = '12345';
-
     await tester.pumpWidget(MultiBlocProvider(
       providers: [
         BlocProvider<PasswordInputBloc>(
@@ -154,7 +153,7 @@ main() {
           body: PasswordInput(
             label: 'password',
             errorMessage: '',
-            onValidedValue: (value) => null,
+            onChanged: (value) => null,
             helperText: 'Helper text',
           ),
         ),

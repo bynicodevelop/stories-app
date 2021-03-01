@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class EmailInput extends StatefulWidget {
-  final Function(String) onValidatedValue;
+  final Function(String) onChanged;
   final String label;
   final String errorMessage;
   final String initialValue;
@@ -13,7 +13,7 @@ class EmailInput extends StatefulWidget {
 
   EmailInput({
     Key key,
-    @required this.onValidatedValue,
+    @required this.onChanged,
     @required this.label,
     @required this.errorMessage,
     this.initialValue,
@@ -42,9 +42,7 @@ class _EmailInputState extends State<EmailInput> {
   Widget build(BuildContext context) {
     return BlocListener<EmailInputBloc, EmailInputState>(
       listener: (context, state) {
-        if (state.email.valid) {
-          widget.onValidatedValue(state.email.value);
-        }
+        widget.onChanged(state.email.value);
       },
       child: BlocBuilder<EmailInputBloc, EmailInputState>(
         builder: (context, state) {

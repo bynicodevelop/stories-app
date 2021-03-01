@@ -5,13 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class UsernameInput extends StatelessWidget {
-  final Function(String) onValidatedValue;
+  final Function(String) onChanged;
   final String label;
   final String errorMessage;
 
   const UsernameInput({
     Key key,
-    @required this.onValidatedValue,
+    @required this.onChanged,
     @required this.label,
     @required this.errorMessage,
   }) : super(key: key);
@@ -20,9 +20,7 @@ class UsernameInput extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<UsernameInputBloc, UsernameInputState>(
       listener: (context, state) {
-        if (state.username.valid) {
-          onValidatedValue(state.username.value);
-        }
+        onChanged(state.username.value);
       },
       child: BlocBuilder<UsernameInputBloc, UsernameInputState>(
         builder: (context, state) {

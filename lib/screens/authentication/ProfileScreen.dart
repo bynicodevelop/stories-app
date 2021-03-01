@@ -1,9 +1,7 @@
-import 'package:app/blocs/emailinput/bloc.dart';
 import 'package:app/blocs/profileform/bloc.dart';
 import 'package:app/helpers/Translate.dart';
 import 'package:app/widgets/forms/EmailInput.dart';
 import 'package:app/widgets/forms/MainButton.dart';
-import 'package:app/widgets/forms/PasswordInput.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
@@ -51,7 +49,7 @@ class ProfileScreen extends StatelessWidget {
                                 "Le changement d'email aura un impact sur vos identifiants de connexion.",
                             errorMessage: t(context).emailCodeErrorMessage,
                             label: t(context).emailCodeLabelForm,
-                            onValidatedValue: (value) => context
+                            onChanged: (value) => context
                                 .read<ProfileFormBloc>()
                                 .add(EmailProfileUpdated(email: value)),
                           ),
