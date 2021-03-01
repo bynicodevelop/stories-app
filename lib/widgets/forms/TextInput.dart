@@ -8,6 +8,7 @@ class TextInput extends StatelessWidget {
   final String initialValue;
   final String errorText;
   final Icon prefixIcon;
+  final Widget suffixIcon;
   final bool isSecret;
 
   const TextInput({
@@ -19,6 +20,7 @@ class TextInput extends StatelessWidget {
     this.errorText,
     this.focusNode,
     this.prefixIcon,
+    this.suffixIcon,
     this.isSecret = false,
   }) : super(key: key);
 
@@ -37,6 +39,7 @@ class TextInput extends StatelessWidget {
         onChanged: onChanged ?? null,
         decoration: InputDecoration(
           prefixIcon: prefixIcon ?? null,
+          suffixIcon: suffixIcon ?? null,
           errorText: errorText ?? null,
           errorMaxLines: 2,
           border: OutlineInputBorder(),

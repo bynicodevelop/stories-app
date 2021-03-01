@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 
-class PasswordInput extends StatelessWidget {
+class PasswordInput extends StatefulWidget {
   final Function(String) onValidedValue;
   final String label;
   final String errorMessage;
@@ -18,27 +18,38 @@ class PasswordInput extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  _PasswordInputState createState() => _PasswordInputState();
+}
+
+class _PasswordInputState extends State<PasswordInput> {
+  bool _isSecret = true;
+
+  @override
   Widget build(BuildContext context) {
     return BlocListener<PasswordInputBloc, PasswordInputState>(
       listener: (context, state) {
         if (state.status == FormzStatus.valid) {
-          onValidedValue(state.password.value);
+          widget.onValidedValue(state.password.value);
         }
       },
       child: BlocBuilder<PasswordInputBloc, PasswordInputState>(
         builder: (context, state) => TextInput(
-          label: label,
-          isSecret: true,
+          label: widget.label,
+          isSecret: _isSecret,
           prefixIcon: Icon(Icons.lock),
           errorText: state.password.error != PasswordInputError.empty &&
                   state.password.error != null
-              ? errorMessage
+              ? widget.errorMessage
               : null,
           onChanged: (value) => context.read<PasswordInputBloc>().add(
                 PasswordChanged(
                   password: value,
                 ),
               ),
+          suffixIcon: InkWell(
+            onTap: () => setState(() => _isSecret = !_isSecret),
+            child: Icon(_isSecret ? Icons.visibility : Icons.visibility_off),
+          ),
         ),
       ),
     );

@@ -34,7 +34,7 @@ class ProfileScreen extends StatelessWidget {
                 PasswordInput(
                   errorMessage: '',
                   label: 'Password',
-                  onValidatedValue: (value) => null,
+                  onValidedValue: (value) => null,
                 ),
                 MainButton(
                   label: 'Mettre à jour',
