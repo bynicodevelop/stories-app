@@ -8,7 +8,7 @@ import 'package:app/blocs/sluginput/bloc.dart';
 import 'package:app/blocs/usernameinput/bloc.dart';
 import 'package:app/configs/ColorsThemeData.dart';
 import 'package:app/screens/HomeScreen.dart';
-import 'package:app/screens/authentication/ReservationScreen.dart';
+import 'package:app/screens/authentication/ProfileScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -87,19 +87,25 @@ class App extends StatelessWidget {
           ],
           home: BlocListener<AuthenticationBloc, AuthenticationState>(
             listener: (context, state) {
-              if (state is Authenticated) {
-                Navigator.pushAndRemoveUntil(
-                  context,
-                  HomeScreen.route(),
-                  (_) => false,
-                );
-              } else if (state is Unauthenticated) {
-                Navigator.pushAndRemoveUntil(
-                  context,
-                  Home.route(),
-                  (_) => false,
-                );
-              }
+              Navigator.pushAndRemoveUntil(
+                context,
+                ProfileScreen.route(),
+                (_) => false,
+              );
+
+              // if (state is Authenticated) {
+              //   Navigator.pushAndRemoveUntil(
+              //     context,
+              //     HomeScreen.route(),
+              //     (_) => false,
+              //   );
+              // } else if (state is Unauthenticated) {
+              //   Navigator.pushAndRemoveUntil(
+              //     context,
+              //     Home.route(),
+              //     (_) => false,
+              //   );
+              // }
             },
             child: SplashScreen(
               onEndAnimation: () =>
