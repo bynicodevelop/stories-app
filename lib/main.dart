@@ -2,6 +2,7 @@ import 'package:app/Home.dart';
 import 'package:app/SplashScreen.dart';
 import 'package:app/blocs/bloc.dart';
 import 'package:app/blocs/connectionform/bloc.dart';
+import 'package:app/blocs/profileform/profileform_bloc.dart';
 import 'package:app/blocs/reservationform/bloc.dart';
 import 'package:app/configs/ColorsThemeData.dart';
 import 'package:app/screens/HomeScreen.dart';
@@ -48,6 +49,12 @@ class App extends StatelessWidget {
         BlocProvider<ReservationformBloc>(
           create: (context) => ReservationformBloc(),
         ),
+        BlocProvider<ConnectionFormBloc>(
+          create: (context) => ConnectionFormBloc(),
+        ),
+        BlocProvider<ProfileFormBloc>(
+          create: (context) => ProfileFormBloc(),
+        ),
         BlocProvider<PasswordInputBloc>(
           create: (context) => PasswordInputBloc(),
         ),
@@ -62,9 +69,6 @@ class App extends StatelessWidget {
         ),
         BlocProvider<EmailInputBloc>(
           create: (context) => EmailInputBloc(),
-        ),
-        BlocProvider<ConnectionFormBloc>(
-          create: (context) => ConnectionFormBloc(),
         ),
       ],
       child: BlocBuilder<AuthenticationBloc, AuthenticationState>(

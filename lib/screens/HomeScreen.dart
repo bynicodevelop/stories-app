@@ -1,4 +1,5 @@
 import 'package:app/screens/authentication/ConnexionScreen.dart';
+import 'package:app/screens/authentication/ProfileScreen.dart';
 import 'package:app/widgets/forms/MainButton.dart';
 import 'package:app/widgets/topography/Headline.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +14,26 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(
+              right: 20.0,
+            ),
+            child: GestureDetector(
+              onTap: () => Navigator.push(
+                context,
+                ProfileScreen.route(),
+              ),
+              child: Icon(
+                Icons.person,
+                size: 26.0,
+                color: Colors.white,
+              ),
+            ),
+          )
+        ],
+      ),
       body: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: 20.0,
