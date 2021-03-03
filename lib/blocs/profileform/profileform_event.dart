@@ -14,3 +14,7 @@ class EmailProfileUpdated extends ProfileFormEvent {
 }
 
 class ProfileFormSubmitted extends ProfileFormEvent {}
+
+class ProfileFormUpdatedWithSucess extends ProfileFormEvent {}
+
+class ProfileFormUpdatedWithError extends ProfileFormEvent {}

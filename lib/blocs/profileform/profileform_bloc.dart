@@ -19,6 +19,12 @@ class ProfileFormBloc extends Bloc<ProfileFormEvent, ProfileFormState> {
         email: email.valid ? email : Email.pure(event.email),
         status: Formz.validate([email]),
       );
+    } else if (event is ProfileFormUpdatedWithSucess ||
+        event is ProfileFormUpdatedWithError) {
+      // TODO: Différencier l'erreur du succes
+      yield state.copyWith(
+        status: FormzStatus.valid,
+      );
     } else if (event is ProfileFormSubmitted) {
       Email email = Email.dirty(state.email.value);
 

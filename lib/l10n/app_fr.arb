@@ -74,5 +74,17 @@
     "tooManyRequestsErrorMessage": "Il y a eu trop de tentatives de connexion. Veuillez rééssayer plus tard. (vous avez été bloqué par mesure de sécurité)",
     "@tooManyRequestsErrorMessage": {
       "description": "Il y a eu trop de tentatives de connexion. Veuillez rééssayer plus tard. (vous avez été bloqué par mesure de sécurité)"
+    },
+    "emailAlreadyExistsErrorMessage": "L'email que vous avez saisie est déjà utilisé pour un autre compte.",
+    "@emailAlreadyExistsErrorMessage": {
+      "description": "L'email que vous avez saisie est déjà utilisé pour un autre compte."
+    },
+    "authenticationRequiredErrorMessage": "Une nouvelle connexion est requis pour mettre à jour votre compte.",
+    "@authenticationRequiredErrorMessage": {
+      "description": "Une nouvelle connexion est requis pour mettre à jour votre compte."
+    },
+    "profileUpdatedWithSucessMessage": "Votre profil est à jour.",
+    "@profileUpdatedWithSucessMessage": {
+      "description": "Votre profil est à jour."
     }
 }
