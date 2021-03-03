@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:app/blocs/emailinput/bloc.dart';
+import 'package:app/blocs/inputs/emailinput/bloc.dart';
 import 'package:app/formModels/Email.dart';
 import 'package:bloc/bloc.dart';
 import 'package:formz/formz.dart';

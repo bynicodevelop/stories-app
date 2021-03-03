@@ -1,4 +1,4 @@
-import 'package:app/blocs/usernameinput/bloc.dart';
+import 'package:app/blocs/bloc.dart';
 import 'package:app/widgets/forms/TextInput.dart';
 import 'package:app/widgets/forms/UsernameInput.dart';
 import 'package:flutter/material.dart';
