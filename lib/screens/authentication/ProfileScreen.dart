@@ -41,6 +41,27 @@ class _ProfileScreenState extends State<ProfileScreen> {
       key: _scaffoldKey,
       appBar: AppBar(
         title: Text('Profil'),
+        actions: [
+          PopupMenuButton(
+            icon: Icon(
+              Icons.more_vert,
+              color: Colors.white,
+            ),
+            onSelected: null,
+            itemBuilder: (BuildContext context) {
+              return [
+                PopupMenuItem(
+                  child: ListTile(
+                    onTap: () =>
+                        context.read<AuthenticationBloc>().add(SignOut()),
+                    leading: Icon(Icons.logout),
+                    title: Text(t(context).signOutLabel),
+                  ),
+                )
+              ];
+            },
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: MultiBlocListener(

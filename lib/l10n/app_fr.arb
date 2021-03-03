@@ -86,5 +86,9 @@
     "profileUpdatedWithSucessMessage": "Votre profil est à jour.",
     "@profileUpdatedWithSucessMessage": {
       "description": "Votre profil est à jour."
+    },
+    "signOutLabel": "Déconnexion",
+    "@signOutLabel": {
+      "description": "Déconnexion"
     }
 }
