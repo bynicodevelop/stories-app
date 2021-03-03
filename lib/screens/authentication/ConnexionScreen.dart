@@ -87,7 +87,7 @@ class ConnectionScreen extends StatelessWidget {
                           EmailInput(
                             label: t(context).emailCodeLabelForm,
                             errorMessage: t(context).emailCodeErrorMessage,
-                            onValidatedValue: (value) =>
+                            onChanged: (value) =>
                                 context.read<ConnectionFormBloc>().add(
                                       ConnectionEmailFormUpdated(
                                         email: value,
@@ -97,7 +97,7 @@ class ConnectionScreen extends StatelessWidget {
                           PasswordInput(
                             label: t(context).passwordCodeLabelForm,
                             errorMessage: t(context).passwordCodeErrorMessage,
-                            onValidedValue: (value) =>
+                            onChanged: (value) =>
                                 context.read<ConnectionFormBloc>().add(
                                       ConnectionPasswordFormUpdated(
                                         password: value,

@@ -41,3 +41,5 @@ class PhoneNumberFormChanged extends ReservationformEvent {
 }
 
 class FormSubmitted extends ReservationformEvent {}
+
+class SubmissionFailure extends ReservationformEvent {}

@@ -3,12 +3,12 @@ import 'package:app/SplashScreen.dart';
 import 'package:app/blocs/bloc.dart';
 import 'package:app/blocs/connectionform/bloc.dart';
 import 'package:app/blocs/emailinput/bloc.dart';
+import 'package:app/blocs/profileform/profileform_bloc.dart';
 import 'package:app/blocs/reservationform/bloc.dart';
 import 'package:app/blocs/sluginput/bloc.dart';
 import 'package:app/blocs/usernameinput/bloc.dart';
 import 'package:app/configs/ColorsThemeData.dart';
 import 'package:app/screens/HomeScreen.dart';
-import 'package:app/screens/authentication/ReservationScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -52,6 +52,12 @@ class App extends StatelessWidget {
         BlocProvider<ReservationformBloc>(
           create: (context) => ReservationformBloc(),
         ),
+        BlocProvider<ConnectionFormBloc>(
+          create: (context) => ConnectionFormBloc(),
+        ),
+        BlocProvider<ProfileFormBloc>(
+          create: (context) => ProfileFormBloc(),
+        ),
         BlocProvider<PasswordInputBloc>(
           create: (context) => PasswordInputBloc(),
         ),
@@ -66,9 +72,6 @@ class App extends StatelessWidget {
         ),
         BlocProvider<EmailInputBloc>(
           create: (context) => EmailInputBloc(),
-        ),
-        BlocProvider<ConnectionFormBloc>(
-          create: (context) => ConnectionFormBloc(),
         ),
       ],
       child: BlocBuilder<AuthenticationBloc, AuthenticationState>(

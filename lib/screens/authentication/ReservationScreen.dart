@@ -108,6 +108,10 @@ class ReservationScreen extends StatelessWidget {
                           _scaffoldState.currentState,
                           state.status.toString(),
                         );
+
+                        context
+                            .read<ReservationformBloc>()
+                            .add(SubmissionFailure());
                       },
                     )
                   ],
@@ -117,13 +121,14 @@ class ReservationScreen extends StatelessWidget {
                       builder: (context, stateForm) {
                         return BlocBuilder<ReservationBloc, ReservationState>(
                             builder: (context, state) {
+                          print('stateForm: ${stateForm.status}');
                           return Form(
                               child: Column(
                             children: [
                               UsernameInput(
                                 label: t(context).usernameLabelForm,
                                 errorMessage: t(context).usernameErrorMessage,
-                                onValidatedValue: (value) =>
+                                onChanged: (value) =>
                                     context.read<ReservationformBloc>().add(
                                           UsernameFormChanged(username: value),
                                         ),
@@ -131,7 +136,7 @@ class ReservationScreen extends StatelessWidget {
                               SlugInput(
                                 label: t(context).slugLabelForm,
                                 errorMessage: t(context).slugErrorMessage,
-                                onValidedValue: (value) =>
+                                onChanged: (value) =>
                                     context.read<ReservationformBloc>().add(
                                           SlugFormChanged(slug: value),
                                         ),
@@ -139,7 +144,7 @@ class ReservationScreen extends StatelessWidget {
                               PhoneNumberInput(
                                 label: t(context).phoneLabelForm,
                                 errorMessage: t(context).phoneErrorMessage,
-                                onValidedValue: (value) =>
+                                onChanged: (value) =>
                                     context.read<ReservationformBloc>().add(
                                           PhoneNumberFormChanged(
                                               phoneNumber: value),
@@ -148,11 +153,14 @@ class ReservationScreen extends StatelessWidget {
                               MainButton(
                                 label:
                                     t(context).reserveLabelForm.toUpperCase(),
-                                onPressed: () {
-                                  context
-                                      .read<ReservationformBloc>()
-                                      .add(FormSubmitted());
-                                },
+                                onPressed: stateForm.status ==
+                                        FormzStatus.submissionInProgress
+                                    ? null
+                                    : () {
+                                        context
+                                            .read<ReservationformBloc>()
+                                            .add(FormSubmitted());
+                                      },
                               ),
                             ],
                           ));
