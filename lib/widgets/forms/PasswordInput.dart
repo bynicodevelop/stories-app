@@ -1,4 +1,4 @@
-import 'package:app/blocs/passwordinput/bloc.dart';
+import 'package:app/blocs/bloc.dart';
 import 'package:app/formModels/Password.dart';
 import 'package:app/widgets/forms/TextInput.dart';
 import 'package:flutter/material.dart';

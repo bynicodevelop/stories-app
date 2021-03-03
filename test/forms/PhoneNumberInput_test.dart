@@ -1,4 +1,4 @@
-import 'package:app/blocs/phonenumberinput/phonenumberinput_bloc.dart';
+import 'package:app/blocs/bloc.dart';
 import 'package:app/widgets/forms/PhoneNumberInput.dart';
 import 'package:app/widgets/forms/TextInput.dart';
 import 'package:flutter/material.dart';

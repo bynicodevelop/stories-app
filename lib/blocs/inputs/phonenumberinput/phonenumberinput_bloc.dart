@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:app/blocs/phonenumberinput/bloc.dart';
+import 'package:app/blocs/inputs/phonenumberinput/bloc.dart';
 import 'package:app/formModels/PhoneNumber.dart';
 import 'package:bloc/bloc.dart';
 import 'package:formz/formz.dart';

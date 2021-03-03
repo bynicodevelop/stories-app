@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:app/blocs/passwordinput/bloc.dart';
+import 'package:app/blocs/inputs/passwordinput/bloc.dart';
 import 'package:app/formModels/Password.dart';
 import 'package:bloc/bloc.dart';
 import 'package:formz/formz.dart';

@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:app/blocs/sluginput/bloc.dart';
+import 'package:app/blocs/inputs/sluginput/bloc.dart';
 import 'package:app/formModels/Slug.dart';
 import 'package:bloc/bloc.dart';
 import 'package:formz/formz.dart';
