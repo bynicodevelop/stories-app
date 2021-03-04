@@ -1,3 +1,4 @@
+import 'package:app/Home.dart';
 import 'package:app/blocs/profileform/bloc.dart';
 import 'package:app/helpers/MessagingStatus.dart';
 import 'package:app/helpers/Translate.dart';
@@ -26,6 +27,39 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  Map<String, Function> _actions;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _actions = {
+      'logout': (_) => context.read<AuthenticationBloc>().add(SignOut()),
+      'delete-account': (context) => showDialog(
+            context: context,
+            builder: (BuildContext context) => AlertDialog(
+              title: Text(t(context).deleteAccountAlertTitle),
+              content: Text(t(context).deleteAccountAlertText),
+              actions: [
+                FlatButton(
+                  child: Text(t(context).cancelAlertButton),
+                  onPressed: () => Navigator.pop(context),
+                ),
+                FlatButton(
+                  child: Text(t(context).confirmAlertButton),
+                  onPressed: () {
+                    context
+                        .read<AuthenticationBloc>()
+                        .add(DeleteUserAccountEvent());
+
+                    Navigator.pop(context);
+                  },
+                ),
+              ],
+            ),
+          )
+    };
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,15 +81,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
               Icons.more_vert,
               color: Colors.white,
             ),
-            onSelected: null,
+            onSelected: (value) => _actions[value](context),
             itemBuilder: (BuildContext context) {
               return [
                 PopupMenuItem(
+                  value: 'logout',
                   child: ListTile(
-                    onTap: () =>
-                        context.read<AuthenticationBloc>().add(SignOut()),
                     leading: Icon(Icons.logout),
                     title: Text(t(context).signOutLabel),
+                  ),
+                ),
+                PopupMenuItem(
+                  value: 'delete-account',
+                  child: ListTile(
+                    leading: Icon(Icons.cancel_presentation_rounded),
+                    title: Text(t(context).deleteAccountLabel),
                   ),
                 )
               ];
@@ -69,6 +109,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             BlocListener<AuthenticationBloc, AuthenticationState>(
               listener: (context, state) {
                 print('AuthenticationBloc state: $state');
+
                 if (state is ProfileUpdated) {
                   _messagingStatus.message(
                     _scaffoldKey.currentState,
@@ -78,6 +119,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   context
                       .read<ProfileFormBloc>()
                       .add(ProfileFormUpdatedWithSucess());
+                } else if (state is DeletedAccountState) {
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    Home.route(),
+                    (_) => false,
+                  );
                 } else if (state is AuthenticationErrors) {
                   _messagingStatus.message(
                     _scaffoldKey.currentState,

@@ -90,5 +90,25 @@
     "signOutLabel": "Déconnexion",
     "@signOutLabel": {
       "description": "Déconnexion"
+    },
+    "deleteAccountLabel": "Fermer mon compte",
+    "@deleteAccountLabel": {
+      "description": "Fermer mon compte"
+    },
+    "deleteAccountAlertTitle": "Demande de confirmation",
+    "@deleteAccountAlertTitle": {
+      "description": "Confirmation de suppression"
+    },
+    "deleteAccountAlertText": "Attention, en accèptant de fermer votre compte, vous acceptez que toutes vos données (informations, posts, photos...) soient aussi supprimés et non récupérable. La fermeture est définitive.",
+    "@deleteAccountAlertText": {
+      "description": "Attention, en accèptant de fermer votre compte, vous acceptez que toutes vos données (informations, posts, photos...) soient aussi supprimés et non récupérable. La fermeture est définitive."
+    },
+    "confirmAlertButton": "Confirmer",
+    "@confirmAlertButton": {
+      "description": "Confirmer"
+    },
+    "cancelAlertButton": "Annuler",
+    "@cancelAlertButton": {
+      "description": "Annuler"
     }
 }

@@ -430,9 +430,11 @@ packages:
   services:
     dependency: "direct main"
     description:
-      path: "../packages/services"
-      relative: true
-    source: path
+      path: "."
+      ref: HEAD
+      resolved-ref: "7b2533c80ffe81c99a53d56b2f057bb11bc6f895"
+      url: "git://github.com/bynicodevelop/stories-services.git"
+    source: git
     version: "0.0.1"
   sky_engine:
     dependency: transitive
